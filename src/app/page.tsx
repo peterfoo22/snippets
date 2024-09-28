@@ -1,7 +1,7 @@
 import {db} from "@/db";
 import Link from "next/link";
 
-//testing a push to the github, great this is pushing to my github
+//testing this branch
 
 export default async function Home() {
 	const snippets = await db.snippet.findMany();
