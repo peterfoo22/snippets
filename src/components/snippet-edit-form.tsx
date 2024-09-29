@@ -2,6 +2,7 @@
 import { db } from "@/db";
 import { Editor } from "@monaco-editor/react";
 import { useState } from "react";
+import * as actions from "@/actions";
 
 import { Snippet } from "@prisma/client";
 
@@ -16,14 +17,16 @@ export default function SnippetEditPageForm({ snippet }: SnippetEditPageFormProp
 		if(!value) {
 			return;
 		}
-
 		setCode(value);
-		
+	
 	}
 
 
 	return (
     <div>
+			<form>
+
+			</form>
       <Editor
         height="40vh"
         theme="vs-dark"
