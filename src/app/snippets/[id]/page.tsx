@@ -43,4 +43,10 @@ export default async function SnippetPage(props: SnippetShowProps) {
       </pre>
     </>
   );
+<<<<<<< HEAD
 }
+=======
+} 
+
+//testing testing
+>>>>>>> 53073a9d8bdd7181b212117ccb86f5cf966b7de6
