@@ -1,7 +1,5 @@
 'use client'
 
-import { db } from "@/db"
-import { redirect } from "next/navigation"
 import * as actions from "@/actions"
 import { useFormState } from "react-dom"
 

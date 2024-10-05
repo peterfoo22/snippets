@@ -1,44 +1,38 @@
-"use client";
-import { db } from "@/db";
-import { Editor } from "@monaco-editor/react";
-import { useState } from "react";
-import * as actions from "@/actions";
+'use client';
 
-import { Snippet } from "@prisma/client";
+import type { Snippet } from '@prisma/client';
+import Editor from '@monaco-editor/react';
+import { useState } from 'react';
+import * as actions from '@/actions';
 
-interface SnippetEditPageFormProps {
+interface SnippetEditFormProps {
   snippet: Snippet;
 }
 
-export default function SnippetEditPageForm({ snippet }: SnippetEditPageFormProps) {
-	const [code, setCode] = useState<string | undefined>(snippet.code);
-	
-	const handleEditorChange = (value: string | undefined) => {
-		if(!value) {
-			return;
-		}
-		setCode(value);
-	
-	}
+export default function SnippetEditForm({ snippet }: SnippetEditFormProps) {
+  const [code, setCode] = useState(snippet.code);
 
+  const handleEditorChange = (value: string = '') => {
+    setCode(value);
+  };
 
-	return (
+  const editSnippetAction = actions.editSnippet.bind(null, snippet.id, code);
+
+  return (
     <div>
-			<form>
-
-			</form>
       <Editor
         height="40vh"
         theme="vs-dark"
-        options={{
-            minimap: {
-            	enabled: false
-            }
-        }}
-        defaultLanguage="javascript"
+        language="javascript"
         defaultValue={snippet.code}
-				onChange={handleEditorChange}
+        options={{ minimap: { enabled: false } }}
+        onChange={handleEditorChange}
       />
+      <form action={editSnippetAction}>
+        <button type="submit" className="p-2 border rounded">
+          Save
+        </button>
+      </form>
     </div>
   );
 }

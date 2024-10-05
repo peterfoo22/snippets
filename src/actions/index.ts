@@ -1,6 +1,7 @@
 'use server';
 
 import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 import { db } from '@/db';
 
 export async function editSnippet(id: number, code: string) {
@@ -42,12 +43,14 @@ export async function createSnippet(
   }
 
   // Create a new record in the database
-  const snippet = await db.snippet.create({
+   await db.snippet.create({
     data: {
       title,
       code,
     },
   });
+
+  revalidatePath('/');
 
   // Redirect the user back to the root route
   redirect('/');
