@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-'use server'
-
-import { db } from "@/db"
-
-export async function editSnippet(formData: FormData) {
-    const id = formData.get('id') as string;
-    const title = formData.get('title') as string;
-    const code = formData.get('code') as string;
-    const snippet = await db.snippet.update({
-      where: {
-        id
-      },
-      data: {
-        title,
-        code
-      }
-    });
-    return snippet
-}
-=======
 'use server';
 
 import { redirect } from 'next/navigation';
@@ -45,9 +24,7 @@ export async function createSnippet(
   formState: { message: string },
   formData: FormData
 ) {
-  return {
-    message: 'Title must be longer',
-  };
+
   // Check the user's inputs and make sure they're valid
   const title = formData.get('title') as string;
   const code = formData.get('code') as string;
@@ -75,4 +52,3 @@ export async function createSnippet(
   // Redirect the user back to the root route
   redirect('/');
 }
->>>>>>> 53073a9d8bdd7181b212117ccb86f5cf966b7de6
